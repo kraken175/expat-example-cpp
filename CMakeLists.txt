@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.0)
+project(expatexamplecpp)
+find_package(expat CONFIG REQUIRED)
+add_executable(expat_example_cpp expat-example-cpp.cpp)
+target_link_libraries(main PRIVATE expat::expat)
