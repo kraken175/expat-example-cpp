@@ -2,40 +2,37 @@
 #include <expat.h>
 
 #ifdef XML_LARGE_SIZE
-#  define XML_FMT_INT_MOD "ll"
+#define XML_FMT_INT_MOD "ll"
 #else
-#  define XML_FMT_INT_MOD "l"
+#define XML_FMT_INT_MOD "l"
 #endif
 
 #ifdef XML_UNICODE_WCHAR_T
-#  include <wchar.h>
-#  define XML_FMT_STR "ls"
+#include <wchar.h>
+#define XML_FMT_STR "ls"
 #else
-#  define XML_FMT_STR "s"
+#define XML_FMT_STR "s"
 #endif
 
-static void XMLCALL
-startElement(void *userData, const XML_Char *name, const XML_Char **atts) {
+static void XMLCALL startElement(void *userData, const XML_Char *name,
+                                 const XML_Char **atts) {
   int i;
   int *depthPtr = (int *)userData;
   (void)atts;
 
-  for (i = 0; i < *depthPtr; i++)
-    putchar('\t');
+  for (i = 0; i < *depthPtr; i++) putchar('\t');
   printf("%" XML_FMT_STR "\n", name);
   *depthPtr += 1;
 }
 
-static void XMLCALL
-endElement(void *userData, const XML_Char *name) {
+static void XMLCALL endElement(void *userData, const XML_Char *name) {
   int *depthPtr = (int *)userData;
   (void)name;
 
   *depthPtr -= 1;
 }
 
-int
-main(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
   char buf[BUFSIZ];
   XML_Parser parser = XML_ParserCreate(NULL);
   int done;
@@ -55,7 +52,7 @@ main(int argc, char *argv[]) {
       XML_ParserFree(parser);
       return 1;
     }
-  } while (! done);
+  } while (!done);
   XML_ParserFree(parser);
   return 0;
 }
