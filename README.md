@@ -1,6 +1,8 @@
 # expat-example-cpp
-The Expat XML Example Code for C++, from this video:
+This is the Expat XML Example Code repository for C++ from this video:
 https://www.youtube.com/watch?v=SLucn4QjdBU
+
+Including more flavors and so on from Kraken175.
 
 MinGW Building Requirements:
 
